@@ -22,8 +22,17 @@ Utilities are always necessary for aufs
 %patch0 -p1
 
 %build
+inc=""
+inc="$inc -I%{_kernelsrcdir}/arch/x86/include/generated/uapi"
+inc="$inc -I%{_kernelsrcdir}/arch/x86/include/uapi"
+inc="$inc -I%{_kernelsrcdir}/include/generated/uapi"
+inc="$inc -I%{_kernelsrcdir}/include/uapi"
+inc="$inc -I%{_kernelsrcdir}/include"
+
 %{__make} \
 	CC="%{__cc}" \
+	CFLAGS="-Wall %{rpmcppflags} %{rpmcppflags} $inc" \
+	INSTALL="install -p" \
 	LIBDIR=%{_libdir}
 
 %install

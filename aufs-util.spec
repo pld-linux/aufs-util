@@ -19,7 +19,7 @@ Utilities are always necessary for aufs
 
 %prep
 %setup -q -n %{name}-%{version}_p%{snap}
-%patch0 -p1
+%patch -P0 -p1
 
 %build
 inc=""
